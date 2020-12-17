@@ -1,0 +1,71 @@
+﻿<Window x:Class="FaceRec.Windows.NewPersonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FaceRec.Windows"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+       
+        mc:Ignorable="d"
+        Title="CreateUserWindow" Height="340" Width="500">
+
+    <Window.Resources>
+        
+    </Window.Resources>
+
+    <Grid  Margin="10">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="325"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="40"/>
+                <RowDefinition MaxHeight="40"/>
+                <RowDefinition MaxHeight="40"/>
+                <RowDefinition MaxHeight="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" Grid.Column="0" Margin="5" >
+                <TextBlock Text="First Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                <TextBox Name="FirstNameBox" MinWidth="200" HorizontalAlignment="Right"/>
+            </DockPanel>
+
+            <DockPanel Grid.Row="1" Grid.Column="0" Margin="5">
+                <TextBlock Text="Last Name:"  VerticalAlignment="Center" Margin="5"/>
+                <TextBox Name="LastNameBox"   HorizontalAlignment="Right" MinWidth="200" />
+            </DockPanel>
+
+            <DockPanel Grid.Row="2" Grid.Column="0" Margin="5">
+                <TextBlock Text="Email:"  VerticalAlignment="Center" Margin="5"/>
+                <TextBox Name="EmailBox"   HorizontalAlignment="Right" MinWidth="200" />
+            </DockPanel>
+        </Grid>
+
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="280"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5">
+                <TextBlock FontSize="16" Text="Choose Photo" HorizontalAlignment="Center" />
+                <Image x:Name="imgPhoto" HorizontalAlignment="Stretch" Height="150"/>
+                <Button Name="btnPhotoBrowse" Content="Browse" Click="btnBrowse_Click" Margin="10" />
+            </StackPanel>
+
+            <DockPanel Grid.Row="1">
+                <Button  Name="btnRegister" Content="Register" Click="btnRegister_Click" VerticalAlignment="Top" />
+                <Button  IsCancel="True" VerticalAlignment="Top" >Cancel</Button>
+            </DockPanel>
+
+        </Grid>
+
+    </Grid>
+</Window>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FaceRec.UserControls;
 
 namespace FaceRec
 {
@@ -60,6 +61,11 @@ namespace FaceRec
         private void FindPerson_Click(object sender, RoutedEventArgs e)
         {
             mainFrame.Navigate(new FindPerson());
+        }
+
+        private void btnRegisterPerson_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new RegisterPerson());
         }
     }
 }
