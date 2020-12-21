@@ -21,7 +21,8 @@ using System.Linq;
 using Emgu.CV.Util;
 using System.Diagnostics;
 using System.IO;
-
+using System.Collections.ObjectModel;
+using Microsoft.Win32;
 
 namespace FaceRec
 {
@@ -30,11 +31,11 @@ namespace FaceRec
     {
 
         public List<Person> Persons;
-        public List<Person> RecognizedPersons = new List<Person>();
+        public ObservableCollection<Person> RecognizedPersons = new ObservableCollection<Person>();
         public List<Mat> TrainedFaces = new List<Mat>();
         public List<int> FaceIDs = new List<int>();
         public List<string> PersonsNames = new List<string>();
-        
+
 
         private VideoCapture videoCapture = null;
         private Image<Bgr, Byte> currentFrame = null;
@@ -46,9 +47,10 @@ namespace FaceRec
         Mat frame = new Mat();
         EigenFaceRecognizer recognizer;
 
-       
+
         CascadeClassifier faceCascadeClassifier = new CascadeClassifier(Directory.GetCurrentDirectory() + @"\Haarcascades\haarcascade_frontalface_alt.xml");
 
+     
         public FindPerson()
         {
             InitializeComponent();
@@ -70,27 +72,27 @@ namespace FaceRec
 
                 var img = new Bitmap(BitmapHelpers.byteArrayToImage(person.PersonPhoto));
                 Image<Gray, byte> imageForTrain = img.ToImage<Gray, byte>();
-            
+
                 System.Drawing.Rectangle[] faces = faceCascadeClassifier.DetectMultiScale(imageForTrain, 1.1, 3, System.Drawing.Size.Empty, System.Drawing.Size.Empty);
 
                 foreach (var face in faces)
                 {
-                    faceResult = imageForTrain;            
+                    faceResult = imageForTrain;
                     faceResult.ROI = face;
 
                     CvInvoke.Resize(faceResult, faceResult, new System.Drawing.Size(200, 200), 0, 0, Inter.Cubic);
                     CvInvoke.EqualizeHist(faceResult, faceResult);
-                    TrainedFaces.Add(faceResult.Mat);   
-                    
+                    TrainedFaces.Add(faceResult.Mat);
+
                 }
-           
+
                 FaceIDs.Add(FaceCount);
                 PersonsNames.Add(person.FirstName + " " + person.LastName);
                 FaceCount++;
                 Debug.WriteLine(FaceCount + ". " + person.FirstName + " " + person.LastName);
 
             }
-        
+
             double Threshold = 2000;
 
             if (TrainedFaces.Count > 0)
@@ -101,7 +103,7 @@ namespace FaceRec
 
         }
 
-        private void btnCapture_Click(object sender, RoutedEventArgs e)
+        private void btnWebCam_Click(object sender, RoutedEventArgs e)
         {
             videoCapture = new VideoCapture();
             videoCapture.ImageGrabbed += ProccesFrame;
@@ -157,24 +159,11 @@ namespace FaceRec
                                     CvInvoke.EqualizeHist(grayFaceResult, grayFaceResult);
                                     var result = recognizer.Predict(grayFaceResult);
 
-
-
-                                    Debug.WriteLine(result.Label + ". " + result.Distance);
+                                    //Debug.WriteLine(result.Label + ". " + result.Distance);
                                     //Here results found known faces
                                     if (result.Label != -1 && result.Distance < 2000)
                                     {
-                                        //faceList.Items
-                                        string[] personNames = PersonsNames[result.Label].Split(new char[] { ' ' });
-                                        string personFirstName = personNames[1];
-                                        string personLastName = personNames[1];
 
-                                        var recognizedPerson = new Person(personFirstName, personLastName );
-
-                                        RecognizedPersons.Add(recognizedPerson);
-
-                                        faceList.ItemsSource = RecognizedPersons;
-
-                                       
                                         CvInvoke.PutText(currentFrame, PersonsNames[result.Label], new System.Drawing.Point(face.X - 2, face.Y - 2),
                                         FontFace.HersheyComplex, 1.0, new Bgr(System.Drawing.Color.Orange).MCvScalar);
                                         CvInvoke.Rectangle(currentFrame, face, new Bgr(System.Drawing.Color.Green).MCvScalar, 2);
@@ -218,6 +207,7 @@ namespace FaceRec
 
                             Image<Bgr, Byte> resultImage = currentFrame.Convert<Bgr, Byte>();
                             resultImage.ROI = face;
+                        
 
                             if (faceRecognationEnabled)
                             {
@@ -246,7 +236,7 @@ namespace FaceRec
                 }
             }
 
-           
+
 
 
             //Render the video capture into Picture Box picCapture
@@ -279,6 +269,16 @@ namespace FaceRec
         {
             faceRecognationEnabled = true;
         }
+
+        private void btnStopCapture_Click(object sender, RoutedEventArgs e)
+        {
+            videoCapture.Stop();
+            currentFrame = null;
+            picCapture.Source = null;
+        }
+
+        
+
        
     }
 }

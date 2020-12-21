@@ -5,8 +5,10 @@
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string UserData { get; set; }
         public byte[] PersonPhoto { get; set; }
 
+        
         public Person(string firstName, string lastName, byte[] personPhoto)
         {
             FirstName = firstName;
@@ -19,6 +21,14 @@
             FirstName = firstName;
             LastName = lastName;
            
+        }
+
+        public Person(int id, string firstName, string lastName)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+
         }
     }
 

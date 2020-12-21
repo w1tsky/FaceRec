@@ -9,8 +9,8 @@
     <UserControl.Resources>
         <DataTemplate x:Key="personTemplate" >
             <StackPanel Margin="5"  Orientation="Vertical">
-                <TextBlock FontSize="14" Text="{Binding Path=FirstName}" HorizontalAlignment="Right" Foreground="White" />
-                <TextBlock FontSize="14" Text="{Binding Path=LastName}" HorizontalAlignment="Right" Foreground="White" />
+                <TextBlock FontSize="14" Text="{Binding Path=FirstName}" HorizontalAlignment="Left" Foreground="White" />
+                <TextBlock FontSize="14" Text="{Binding Path=LastName}" HorizontalAlignment="Left" Foreground="White" />
             </StackPanel>
         </DataTemplate>
 
@@ -20,7 +20,7 @@
     <Grid Background="#2c2f33" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"  />
-            <ColumnDefinition Width="230"  MinWidth="200" />
+            <ColumnDefinition Width="250"  MinWidth="200" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -29,26 +29,26 @@
         </Grid.RowDefinitions>
 
 
-        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <Button Margin="15,7,5,7" HorizontalAlignment="Left" Content="Add Person"  Click="addPerson_Click"/>
-            <Button Margin="15,7,5,7" HorizontalAlignment="Right" Content="Remove Person"  Click="btnRemovePerson_Click"/>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="#7289da">
+            <Button Margin="10,2" HorizontalAlignment="Left" Content="Add Person"  Click="addPerson_Click"/>
+            <Button Margin="3" HorizontalAlignment="Right" Content="Remove Person"  Click="btnRemovePerson_Click"/>
         </StackPanel>
 
 
-        <Grid  Grid.Row="0"  Grid.Column="0" Background="#7289da"  >
+        <Grid  Grid.Row="0"  Grid.Column="1" Background="#7289da"  >
             <TextBlock Text="Person Details" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="20" Foreground="White" />
         </Grid>
 
 
-        <ListBox Name="PersonList" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"   ItemTemplate="{StaticResource personTemplate}" 
+        <ListBox Name="PersonList" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"   ItemTemplate="{StaticResource personTemplate}" 
                  SelectionChanged="PersonList_SelectionChanged" SelectedIndex="0" Foreground="White"  Background="#2c2f33" >
 
         </ListBox>
         
-        <Grid  Margin="10"  Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
+        <Grid  Margin="10"  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
             
 
-            <StackPanel Name="PersonDetails" Orientation="Vertical">
+            <StackPanel Name="PersonDetails" Orientation="Vertical" HorizontalAlignment="Center" >
 
                 <Image Name="PhotoImage" Height="200" Width="200" HorizontalAlignment="Left" />
 
@@ -61,6 +61,7 @@
                     <TextBlock FontSize="16" Text=" Lastname: " Foreground="White"/>
                     <TextBlock FontSize="16" Text="{Binding Path=LastName}" Foreground="White" />
                 </StackPanel>
+                
 
             </StackPanel>            
             

@@ -1,14 +1,11 @@
-﻿<UserControl x:Class="FaceRec.FindPerson"
+﻿<UserControl x:Class="FaceRec.UserControls.FindPersonOnImage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FaceRec.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Cursor="Hand">
-   
-   
-
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#2c2f33" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160"  />
@@ -16,12 +13,13 @@
         </Grid.ColumnDefinitions>
 
         <Border BorderThickness="0,0,3,0" BorderBrush="#23272a" >
-            <StackPanel Orientation="Vertical" >
+            <StackPanel Orientation="Vertical" Cursor="Hand" >
                 <Button Grid.Column="1" Content="Detect Faces" Click="btnDetectFaces_Click" Cursor="Hand" Margin="5" />
-                <Button Grid.Column="1" Content="Recognize Faces" Click="btnRecognizeFaces_Click" Margin="5" Cursor="Hand" />
-                <Button Grid.Column="1" Content="Stop Capture" Click="btnStopCapture_Click" Margin="5" Cursor="Hand"  />
+                <Button Grid.Column="1" Content="Recognize Faces" Click="btnRecognizeFaces_Click" Cursor="Hand" Margin="5" />
             </StackPanel>
+
         </Border>
+        
 
 
         <Grid  Grid.Column="1"  Background="#2c2f33" >
@@ -34,13 +32,17 @@
             <Image Grid.Row="0" Width="640" Height="360" Name="picCapture" />
 
 
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#23272a" >
-                
-                <Button Grid.Column="0" Click="btnWebCam_Click" Margin="250,5,5,5" Height="55" Width="100" Cursor="Hand" >
-                  WebCam
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#23272a">
+
+
+                <Button Grid.Column="0" Click="btnImage_Click"  Height="55"  Margin="200,5,5,5" >
+                    Load Image
                 </Button>
-           
-                
+
+                <Button Grid.Column="0" Click="btnSaveImage_Click"  Height="55"  Margin="5,5,5,5" Cursor="Hand" >
+                    Save
+                </Button>
+
 
 
             </StackPanel>

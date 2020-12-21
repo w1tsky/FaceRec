@@ -7,7 +7,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib" 
        
         mc:Ignorable="d"
-        Title="CreateUserWindow" Height="340" Width="500">
+        Title="CreateUserWindow" Height="380" Width="520">
 
     <Window.Resources>
         
@@ -40,11 +40,13 @@
                 <TextBlock Text="Last Name:"  VerticalAlignment="Center" Margin="5"/>
                 <TextBox Name="LastNameBox"   HorizontalAlignment="Right" MinWidth="200" />
             </DockPanel>
-
+            
             <DockPanel Grid.Row="2" Grid.Column="0" Margin="5">
-                <TextBlock Text="Email:"  VerticalAlignment="Center" Margin="5"/>
-                <TextBox Name="EmailBox"   HorizontalAlignment="Right" MinWidth="200" />
+                <TextBlock Text="Person Data:"  VerticalAlignment="Center" Margin="5"/>
+                <TextBox Name="PersonDataBox"   HorizontalAlignment="Right" MinWidth="200" Height="150" />
             </DockPanel>
+
+           
         </Grid>
 
 

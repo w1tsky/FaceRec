@@ -1,18 +1,7 @@
 ﻿using FaceRec.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using FaceRec.UserControls;
 
 namespace FaceRec
@@ -22,13 +11,17 @@ namespace FaceRec
     /// </summary>
     public partial class MainWindow : Window
     {
+        UserRole userRole;
+        public string Login;
+
         public MainWindow(string login, UserRole role)
         {
             InitializeComponent();
 
             CurrentUser.Text = login;
             CurrentUserRole.Text = role.ToString();
- 
+            userRole = role;
+            Login = login;
 
         }
 
@@ -63,9 +56,47 @@ namespace FaceRec
             mainFrame.Navigate(new FindPerson());
         }
 
+        private void btnFindPersonOnImage_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new FindPersonOnImage());
+        }
+
         private void btnRegisterPerson_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new RegisterPerson());
+            if (userRole == UserRole.Admin)
+            {
+                mainFrame.Navigate(new RegisterPerson());
+            }
+            else if (userRole == UserRole.Writer)
+                mainFrame.Navigate(new RegisterPerson());
+            else
+            {
+                MessageBox.Show("Вы не можете управлять личностями");
+            }
+           
         }
+
+        private void ManageUsers_Click(object sender, RoutedEventArgs e)
+        {
+            if (userRole == UserRole.Admin)
+            {
+                mainFrame.Navigate(new ManageUsers());
+            }
+            else
+            {
+                MessageBox.Show("Вы не администратор");
+            }
+        }
+
+        private void LogoutUsers_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow lw = new LoginWindow();
+            lw.Show();
+            this.Close();
+        }
+
+       
+
+        
     }
 }

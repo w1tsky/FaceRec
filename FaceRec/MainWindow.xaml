@@ -31,7 +31,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="#1e2124" >
-            <TextBlock Text="Blockchain App" Foreground="#b9bbbe" Margin="4.4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock Text="FaceRec App" Foreground="#b9bbbe" Margin="4.4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <Ellipse Fill="Red"  Height="12" Width="13" HorizontalAlignment="Right" Margin="0,0,4,0" MouseLeftButtonDown="closeApp" WindowChrome.IsHitTestVisibleInChrome="True"/>
             <Ellipse Fill="Yellow"  Height="12" Width="13" HorizontalAlignment="Right" Margin="0,0,20,0" MouseLeftButtonDown="minimizeApp" WindowChrome.IsHitTestVisibleInChrome="True" />
         </Grid>
@@ -39,12 +39,13 @@
 
         <Grid Grid.Column="0" Grid.Row="1" Background="#23272a">
             <StackPanel>
-                <Button Name="btnFindPerson" Click="FindPerson_Click" Content="Find People" FontSize="10" Height="65" Margin="3"/>
+                <Button Name="btnFindPerson" Click="FindPerson_Click" Content="Find People" FontSize="10" Height="65" Margin="3" Cursor="Hand"/>
+                <Button Name="btnFindPersonOnImage" Click="btnFindPersonOnImage_Click" Content="Find People On Image" FontSize="10" Height="65" Margin="3" Cursor="Hand"/>
                 <Button Name="btnRegisterPerson" Click="btnRegisterPerson_Click"  Content="Register Person" FontSize="10"   Height="65" Margin="3"/>
-                <Button Name="btnManageUsers" Content="Manage Users"  FontSize="10"   Height="65" Margin="3"/>
+                <Button Name="btnManageUsers" Content="Manage Users" Click="ManageUsers_Click" FontSize="10"   Height="65" Margin="3"/>
             </StackPanel>
-            
-            <Button Name="LogoutUsers_Button" FontSize="10" Content="Logout"  Height="65" Margin="3" VerticalAlignment="Bottom"/>
+
+            <Button Name="LogoutUsers_Button" Click="LogoutUsers_Button_Click" FontSize="10" Content="Logout"  Height="65" Margin="3" VerticalAlignment="Bottom" Cursor="Hand"/>
         </Grid>
 
 

@@ -35,6 +35,9 @@ namespace FaceRec.Migrations
                     b.Property<byte[]>("PersonPhoto")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<string>("UserData")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Persons");

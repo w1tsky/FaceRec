@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FaceRec.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20201215035613_v1.1")]
-    partial class v11
+    [Migration("20201218082649_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,9 @@ namespace FaceRec.Migrations
 
                     b.Property<byte[]>("PersonPhoto")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("UserData")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

@@ -1,0 +1,62 @@
+﻿<Window x:Class="FaceRec.Windows.CreateUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FaceRec.Windows"   
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:Roles="clr-namespace:FaceRec.Models"
+        mc:Ignorable="d"
+        Title="CreateUserWindow" Height="450" Width="500">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="Roles:UserRole"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+        <DockPanel Grid.Row="0" Margin="5">
+            <TextBlock Text="Enter Login:" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <TextBox Name="LoginBox" Grid.Row="1"  MinHeight="40" MinWidth="300" HorizontalAlignment="Right"/>
+        </DockPanel>
+
+        <DockPanel Grid.Row="1" Margin="5">
+            <TextBlock Text="Enter Password:" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <TextBox Name="PasswordBox" Grid.Row="1"  MinHeight="40" MinWidth="300" HorizontalAlignment="Right"/>
+        </DockPanel>
+
+
+        <DockPanel Grid.Row="2" Margin="5" >
+            <TextBlock Text="Choose UserRole:" />
+            <ComboBox Name="usersRoleList" MinWidth="300" HorizontalAlignment="Right"   Foreground="Aqua"
+                     ItemsSource="{Binding Source={StaticResource dataFromEnum}}">
+            </ComboBox>
+        </DockPanel>
+
+
+
+
+        <DockPanel Grid.Row="3" Margin="5">
+            <TextBlock Text="Enter UserData:" TextWrapping="WrapWithOverflow"     Height="30"/>
+            <TextBox Name="UserDataBox"  MinWidth="300" MinHeight="100"  HorizontalAlignment="Right">Some data...</TextBox>
+        </DockPanel>
+
+        <DockPanel Grid.Row="8"   Margin="0,150,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Button Click="AddUser_Click" IsDefault="True" MinWidth="60" MinHeight="60" Margin="0,0,10,0">OK</Button>
+            <Button IsCancel="True" MinWidth="60" MinHeight="60" >Cancel</Button>
+        </DockPanel>
+
+    </Grid>
+</Window>

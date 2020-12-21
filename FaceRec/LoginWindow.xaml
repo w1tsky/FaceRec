@@ -25,17 +25,17 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="#1e2124" >
-            <TextBlock Text="Blockchain App" Foreground="#b9bbbe" Margin="4.4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock Text="FaceRec App" Foreground="#b9bbbe" Margin="4.4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <Ellipse Fill="Red"  Height="12" Width="13" HorizontalAlignment="Right" Margin="0,0,4,0" MouseLeftButtonDown="closeApp" WindowChrome.IsHitTestVisibleInChrome="True" />
             <Ellipse Fill="Yellow"  Height="12" Width="13" HorizontalAlignment="Right" Margin="0,0,20,0" MouseLeftButtonDown="minimizeApp" WindowChrome.IsHitTestVisibleInChrome="True" />
         </Grid>
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" MinHeight="200" VerticalAlignment="Center" >
-            <Label Content="FaceRec App" Foreground="White" HorizontalAlignment="Center" FontSize="30" Margin="20"/>
-            <Label Content="Username" Foreground="White" />
-            <TextBox Name="LoginBox" Height="23"   Text="" Width="250"/>
-            <Label  Content="Password" Foreground="White" VerticalAlignment="Top"/>
-            <PasswordBox Name="PasswordBox"  Height="23"   Width="250"/>
+            <Label Content="FaceRec App" Foreground="White" HorizontalAlignment="Left" FontSize="30" Margin="20"/>
+            <Label Content="Username" Foreground="White" HorizontalAlignment="Left"/>
+            <TextBox Name="LoginBox" Height="23"   Text="" Width="250" Foreground="Gray"/>
+            <Label  Content="Password" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <PasswordBox Name="PasswordBox"  Height="23"   Width="250"  Foreground="Gray"/>
             <Button Content="Login" HorizontalAlignment="Center" Width="75" Click="LoginButton_Click" Margin="30"/>
         </StackPanel>
 
